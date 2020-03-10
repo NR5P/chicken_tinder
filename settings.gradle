@@ -1,0 +1,2 @@
+rootProject.name='chicken_tinder'
+include ':app'
