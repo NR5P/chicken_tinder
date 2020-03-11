@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "627118593484",
+    "firebase_url": "https://chicken-tinder-94bee.firebaseio.com",
+    "project_id": "chicken-tinder-94bee",
+    "storage_bucket": "chicken-tinder-94bee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627118593484:android:d470d121abd496ccce7969",
+        "android_client_info": {
+          "package_name": "com.example.chicken_tinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627118593484-tqmctt1saqd5qfnq3avo3dnmn39di7pd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chicken_tinder",
+            "certificate_hash": "16171fd2f5bd5fba7d9f7265df874291d8ebc8a8"
+          }
+        },
+        {
+          "client_id": "627118593484-k1p5kbrnvlgvknnhfmt5si43n77qbkfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt1Q5JV00b8c6FvR8u3KJ7Ddo4VJ6nvK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "627118593484-k1p5kbrnvlgvknnhfmt5si43n77qbkfg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
