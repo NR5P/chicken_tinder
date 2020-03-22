@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -14,11 +15,12 @@ public class ChooseSingleOrGroupActivity extends AppCompatActivity {
     private ImageButton btnSubmitMiles;
     private SeekBar seekMileage;
     private TextView txtMileage;
+    private FindRestaurants findRestaurants;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_single_or_group);
-
+        findRestaurants = new FindRestaurants(this);
         btnSubmitMiles = findViewById(R.id.btnSubmitMiles);
         seekMileage = findViewById(R.id.seekMileage);
         txtMileage = findViewById(R.id.txtMileage);
@@ -44,6 +46,8 @@ public class ChooseSingleOrGroupActivity extends AppCompatActivity {
         btnSubmitMiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int mileage = Integer.parseInt(txtMileage.getText().toString());
+                findRestaurants.getRestaurants(mileage);
                 Intent intent = new Intent(ChooseSingleOrGroupActivity.this, SwipeActivity.class);
                 intent.putExtra(ChooseSingleOrGroupActivity.MILEAGE, seekMileage.getProgress());
                 startActivity(intent);
