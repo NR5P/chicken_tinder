@@ -11,7 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class ChooseSingleOrGroupActivity extends AppCompatActivity {
-    private static final String MILEAGE = "MILEAGE";
+    public static final String MILEAGE = "MILEAGE";
     private ImageButton btnSubmitMiles;
     private SeekBar seekMileage;
     private TextView txtMileage;
@@ -47,7 +47,7 @@ public class ChooseSingleOrGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int mileage = Integer.parseInt(txtMileage.getText().toString());
-                findRestaurants.getRestaurants(mileage);
+                findRestaurants.execute(mileage);
                 Intent intent = new Intent(ChooseSingleOrGroupActivity.this, SwipeActivity.class);
                 intent.putExtra(ChooseSingleOrGroupActivity.MILEAGE, seekMileage.getProgress());
                 startActivity(intent);

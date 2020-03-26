@@ -6,15 +6,19 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
 
-public class FindRestaurants implements ActivityCompat.OnRequestPermissionsResultCallback {
-    ArrayList<Restaurant> restaurants;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
+
+public class FindRestaurants extends AsyncTask<Integer, Integer, Void> implements ActivityCompat.OnRequestPermissionsResultCallback {
     LocationManager locationManager;
     Context context;
     double longitude;
@@ -22,17 +26,26 @@ public class FindRestaurants implements ActivityCompat.OnRequestPermissionsResul
 
     public FindRestaurants(Context context) {
         this.context = context;
-        restaurants = new ArrayList<>();
     }
 
     public void getRestaurants(int mileage) {
+        int meters = (int)(1609.344 * mileage);
+        String response = "";
+        String key = "AIzaSyB8kVd2fjsNcf4t4CwT5nCrM0LNfLGSE5M";
         getGpsCoordinance();
-        Log.d("LONGITUDE: ",Double.toString(longitude));
-        Log.d("LATITUDE: ",Double.toString(latitude));
-        Log.d("Mileage: ",String.valueOf(mileage));
-    }
-
-    public void placeSearchApiCall() {
+        String urlPath = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=" + meters + "&type=restaurant&key=" + key;
+        Log.d("urlPath: ",urlPath);
+        Log.d("Longitud: ",String.valueOf(longitude));
+        Log.d("Latitude: ",String.valueOf(latitude));
+        try {
+            URLConnection connection = new URL(urlPath).openConnection();
+            Scanner scanner = new Scanner(connection.getInputStream());
+            response = scanner.useDelimiter("\\A").next();
+            Log.d("JSON: ", response);
+        } catch (Exception e) {
+            System.out.println("ERROR: "+e);
+        }
+        Restaurant[] restaurants = new Gson().fromJson(response, Restaurant[].class);
 
     }
 
@@ -80,5 +93,11 @@ public class FindRestaurants implements ActivityCompat.OnRequestPermissionsResul
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+    @Override
+    protected Void doInBackground(Integer... integers) {
+        getRestaurants(integers[0]);
+        return null;
     }
 }

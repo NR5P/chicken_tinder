@@ -6,11 +6,11 @@ public class Restaurant {
     String name;
     String vicinity;
 
-    private class geometry {
+    private static class geometry {
 
     }
 
-    private class opening_hours {
+    private static class opening_hours {
         boolean open_now;
     }
 }
