@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 import java.util.Scanner;
 
 public class FindRestaurants extends AsyncTask<Integer, Integer, Void> implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -23,6 +24,7 @@ public class FindRestaurants extends AsyncTask<Integer, Integer, Void> implement
     Context context;
     double longitude;
     double latitude;
+    Restaurants restaurants;
 
     public FindRestaurants(Context context) {
         this.context = context;
@@ -34,19 +36,25 @@ public class FindRestaurants extends AsyncTask<Integer, Integer, Void> implement
         String key = "AIzaSyB8kVd2fjsNcf4t4CwT5nCrM0LNfLGSE5M";
         getGpsCoordinance();
         String urlPath = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=" + meters + "&type=restaurant&key=" + key;
-        Log.d("urlPath: ",urlPath);
-        Log.d("Longitud: ",String.valueOf(longitude));
-        Log.d("Latitude: ",String.valueOf(latitude));
+        //Log.d("urlPath: ",urlPath);
+        //Log.d("Longitud: ",String.valueOf(longitude));
+        //Log.d("Latitude: ",String.valueOf(latitude));
         try {
             URLConnection connection = new URL(urlPath).openConnection();
             Scanner scanner = new Scanner(connection.getInputStream());
             response = scanner.useDelimiter("\\A").next();
-            Log.d("JSON: ", response);
+            //Log.d("JSON: ", response);
         } catch (Exception e) {
             System.out.println("ERROR: "+e);
         }
-        Restaurant[] restaurants = new Gson().fromJson(response, Restaurant[].class);
+        restaurants = new Gson().fromJson(response, Restaurants.class);
+        for (Result result : restaurants.results) {
+            System.out.println(result.name);
+        }
+    }
 
+    public List<Result> getRestaurantResults() {
+        return restaurants.results;
     }
 
     private void getGpsCoordinance() {

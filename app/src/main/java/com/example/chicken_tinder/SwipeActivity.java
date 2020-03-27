@@ -10,11 +10,14 @@ import android.widget.Toast;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SwipeActivity extends AppCompatActivity {
     private ArrayList<String> al;
     private ArrayAdapter<String> arrayAdapter;
     private int i;
+    private FindRestaurants findRestaurants;
+    private List<Result> results;
 
     //@InjectView(R.id.frame) SwipeFlingAdapterView flingContainer;
 
@@ -25,6 +28,9 @@ public class SwipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_swipe);
         //ButterKnife.inject(this);
 
+        findRestaurants = new FindRestaurants(this);
+        findRestaurants.execute(getIntent().getIntExtra(ChooseSingleOrGroupActivity.MILEAGE,0));
+        //List<Result> restaurantResults = findRestaurants.getRestaurantResults();
 
         al = new ArrayList<>();
         al.add("chick fillet");
