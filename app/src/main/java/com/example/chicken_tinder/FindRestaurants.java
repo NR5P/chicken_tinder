@@ -3,6 +3,7 @@ package com.example.chicken_tinder;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -16,21 +17,26 @@ import com.google.gson.Gson;
 
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FindRestaurants extends AsyncTask<Integer, Integer, Void> implements ActivityCompat.OnRequestPermissionsResultCallback {
+public class FindRestaurants implements ActivityCompat.OnRequestPermissionsResultCallback, Runnable {
     LocationManager locationManager;
+    SwipeActivity swipeActivity;
     Context context;
     double longitude;
     double latitude;
+    int mileage;
     Restaurants restaurants;
 
-    public FindRestaurants(Context context) {
+    public FindRestaurants(Context context, int mileage) {
         this.context = context;
+        this.mileage = mileage;
+        this.swipeActivity = (SwipeActivity)context;
     }
 
-    public void getRestaurants(int mileage) {
+    public void getRestaurants() {
         int meters = (int)(1609.344 * mileage);
         String response = "";
         String key = "AIzaSyB8kVd2fjsNcf4t4CwT5nCrM0LNfLGSE5M";
@@ -53,7 +59,7 @@ public class FindRestaurants extends AsyncTask<Integer, Integer, Void> implement
         }
     }
 
-    public List<Result> getRestaurantResults() {
+    public ArrayList<Result> getRestaurantResults() {
         return restaurants.results;
     }
 
@@ -104,8 +110,11 @@ public class FindRestaurants extends AsyncTask<Integer, Integer, Void> implement
     }
 
     @Override
-    protected Void doInBackground(Integer... integers) {
-        getRestaurants(integers[0]);
-        return null;
+    public void run() {
+        getRestaurants();
+        ArrayList<Result> restaurantResults = getRestaurantResults();
+        for (Result r : restaurantResults) {
+            swipeActivity.addRestaurant(r.name);
+        }
     }
 }

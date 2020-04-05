@@ -27,20 +27,19 @@ public class SwipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
         //ButterKnife.inject(this);
-
-        findRestaurants = new FindRestaurants(this);
-        findRestaurants.execute(getIntent().getIntExtra(ChooseSingleOrGroupActivity.MILEAGE,0));
-        //List<Result> restaurantResults = findRestaurants.getRestaurantResults();
+        int mileage = getIntent().getIntExtra(ChooseSingleOrGroupActivity.MILEAGE,0);
+        findRestaurants = new FindRestaurants(this, mileage);
+        new Thread(findRestaurants).start();
 
         al = new ArrayList<>();
-        al.add("chick fillet");
-        al.add("Texas Rhoadhouse");
-        al.add("Chilli's");
-        al.add("Dynasty");
-        al.add("McDonalds");
-        al.add("Whataburger");
-        al.add("Italion");
+        /* //TODO: need to get learn more on async functions and returning after complete
+        for (Result result : restaurantResults) {
+            al.add(result.name);
+        }
+
+         */
         al.add("Chinese");
+
 
         arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, al );
 
@@ -98,6 +97,10 @@ public class SwipeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void addRestaurant(String name) {
+        al.add(name);
     }
 
     /*

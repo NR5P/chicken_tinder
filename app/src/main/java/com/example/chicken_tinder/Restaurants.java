@@ -1,9 +1,10 @@
 package com.example.chicken_tinder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurants {
-    public List<Result> results;
+    public ArrayList<Result> results;
 }
 
 class Result {
