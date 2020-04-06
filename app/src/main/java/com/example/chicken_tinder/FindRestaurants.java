@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -28,11 +29,13 @@ public class FindRestaurants implements ActivityCompat.OnRequestPermissionsResul
     double longitude;
     double latitude;
     int mileage;
+    Handler handler;
     Restaurants restaurants;
 
-    public FindRestaurants(Context context, int mileage) {
+    public FindRestaurants(Context context, int mileage, Handler handler) {
         this.context = context;
         this.mileage = mileage;
+        this.handler = handler;
         this.swipeActivity = (SwipeActivity)context;
     }
 
@@ -115,6 +118,12 @@ public class FindRestaurants implements ActivityCompat.OnRequestPermissionsResul
         ArrayList<Result> restaurantResults = getRestaurantResults();
         for (Result r : restaurantResults) {
             swipeActivity.addRestaurant(r.name);
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    swipeActivity.refreshAdapter();
+                }
+            });
         }
     }
 }

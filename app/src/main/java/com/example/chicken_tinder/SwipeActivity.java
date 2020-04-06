@@ -3,6 +3,7 @@ package com.example.chicken_tinder;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -17,18 +18,18 @@ public class SwipeActivity extends AppCompatActivity {
     private ArrayAdapter<String> arrayAdapter;
     private int i;
     private FindRestaurants findRestaurants;
-    private List<Result> results;
-
+    Handler handlerThread;
     //@InjectView(R.id.frame) SwipeFlingAdapterView flingContainer;
-
+    SwipeFlingAdapterView flingContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        handlerThread = new Handler();
         setContentView(R.layout.activity_swipe);
         //ButterKnife.inject(this);
         int mileage = getIntent().getIntExtra(ChooseSingleOrGroupActivity.MILEAGE,0);
-        findRestaurants = new FindRestaurants(this, mileage);
+        findRestaurants = new FindRestaurants(this, mileage, handlerThread);
         new Thread(findRestaurants).start();
 
         al = new ArrayList<>();
@@ -38,12 +39,12 @@ public class SwipeActivity extends AppCompatActivity {
         }
 
          */
-        al.add("Chinese");
+        //al.add("Chinese");
 
 
         arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, al );
 
-        SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
+        flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -71,10 +72,10 @@ public class SwipeActivity extends AppCompatActivity {
             @Override
             public void onAdapterAboutToEmpty(int itemsInAdapter) {
                 // Ask for more data here
-                al.add("XML ".concat(String.valueOf(i)));
-                arrayAdapter.notifyDataSetChanged();
+                //al.add("XML ".concat(String.valueOf(i)));
+                //arrayAdapter.notifyDataSetChanged();
                 Log.d("LIST", "notified");
-                i++;
+                //i++;
             }
 
             @Override
@@ -101,6 +102,11 @@ public class SwipeActivity extends AppCompatActivity {
 
     public void addRestaurant(String name) {
         al.add(name);
+    }
+
+    public void refreshAdapter() {
+        arrayAdapter.notifyDataSetChanged();
+        Log.d("SwipeActivity","refreshAdapter called");
     }
 
     /*
