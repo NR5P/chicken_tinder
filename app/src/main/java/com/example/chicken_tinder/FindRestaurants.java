@@ -45,7 +45,7 @@ public class FindRestaurants implements ActivityCompat.OnRequestPermissionsResul
         String key = "AIzaSyB8kVd2fjsNcf4t4CwT5nCrM0LNfLGSE5M";
         getGpsCoordinance();
         String urlPath = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latitude + "," + longitude + "&radius=" + meters + "&type=restaurant&key=" + key;
-        //Log.d("urlPath: ",urlPath);
+        Log.d("urlPath: ",urlPath);
         //Log.d("Longitud: ",String.valueOf(longitude));
         //Log.d("Latitude: ",String.valueOf(latitude));
         try {
@@ -116,8 +116,10 @@ public class FindRestaurants implements ActivityCompat.OnRequestPermissionsResul
     public void run() {
         getRestaurants();
         ArrayList<Result> restaurantResults = getRestaurantResults();
-        for (Result r : restaurantResults) {
+        for (Result r : restaurants.results) {
             swipeActivity.addRestaurant(r.name);
+            Log.d("FindRestaurants","photo is: "+r.photos.get(0).photo_reference);
+            Log.d("FindRestaurants","height is: "+r.photos.get(0).height);
             handler.post(new Runnable() {
                 @Override
                 public void run() {

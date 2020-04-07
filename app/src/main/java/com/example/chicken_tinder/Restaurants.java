@@ -1,5 +1,6 @@
 package com.example.chicken_tinder;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +15,15 @@ class Result {
     public String vicinity;
 
     public Opening_hours opening_hours;
+    public ArrayList<photos> photos;
 }
 
 class Opening_hours {
     public boolean open_now;
+}
+
+class photos {
+    String photo_reference;
+    int height;
+    int width;
 }
