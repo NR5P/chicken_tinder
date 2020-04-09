@@ -5,8 +5,12 @@ import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 
-public class CustomSwipeItemAdapter extends ArrayAdapter<String> {
-    public CustomSwipeItemAdapter(@NonNull Context context, int resource) {
-        super(context, resource);
+import java.util.ArrayList;
+import java.util.List;
+
+public class CustomSwipeItemAdapter extends ArrayAdapter<Result> {
+    private Context context;
+    public CustomSwipeItemAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Result> objects) {
+        super(context, resource, objects);
     }
 }

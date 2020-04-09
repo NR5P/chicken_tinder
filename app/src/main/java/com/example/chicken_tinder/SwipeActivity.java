@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SwipeActivity extends AppCompatActivity {
-    private ArrayList<String> allRestaurants;
+    private ArrayList<Result> allRestaurants;
     //private ArrayAdapter<String> arrayAdapter;
     //private ArrayAdapter arrayAdapter;
-    private CustomSwipeItemAdapter arrayAdapter
+    private CustomSwipeItemAdapter arrayAdapter;
     private int i;
     private FindRestaurants findRestaurants;
     Handler handlerThread;
@@ -44,7 +44,7 @@ public class SwipeActivity extends AppCompatActivity {
         //al.add("Chinese");
 
 
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, allRestaurants);
+        arrayAdapter = new CustomSwipeItemAdapter(this, R.layout.item, allRestaurants);
 
         flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
@@ -102,8 +102,8 @@ public class SwipeActivity extends AppCompatActivity {
 
     }
 
-    public void addRestaurant(String name) {
-        allRestaurants.add(name);
+    public void addRestaurant(Result result) {
+        allRestaurants.add(result);
     }
 
     public void refreshAdapter() {
