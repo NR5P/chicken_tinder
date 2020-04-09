@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SwipeActivity extends AppCompatActivity {
-    private ArrayList<String> al;
-    private ArrayAdapter<String> arrayAdapter;
+    private ArrayList<String> allRestaurants;
+    //private ArrayAdapter<String> arrayAdapter;
+    //private ArrayAdapter arrayAdapter;
+    private CustomSwipeItemAdapter arrayAdapter
     private int i;
     private FindRestaurants findRestaurants;
     Handler handlerThread;
@@ -32,7 +34,7 @@ public class SwipeActivity extends AppCompatActivity {
         findRestaurants = new FindRestaurants(this, mileage, handlerThread);
         new Thread(findRestaurants).start();
 
-        al = new ArrayList<>();
+        allRestaurants = new ArrayList<>();
         /* //TODO: need to get learn more on async functions and returning after complete
         for (Result result : restaurantResults) {
             al.add(result.name);
@@ -42,7 +44,7 @@ public class SwipeActivity extends AppCompatActivity {
         //al.add("Chinese");
 
 
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, R.id.helloText, al );
+        arrayAdapter = new ArrayAdapter<>(this, R.layout.item, allRestaurants);
 
         flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
 
@@ -52,7 +54,7 @@ public class SwipeActivity extends AppCompatActivity {
             public void removeFirstObjectInAdapter() {
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
-                al.remove(0);
+                allRestaurants.remove(0);
                 arrayAdapter.notifyDataSetChanged();
             }
 
@@ -101,7 +103,7 @@ public class SwipeActivity extends AppCompatActivity {
     }
 
     public void addRestaurant(String name) {
-        al.add(name);
+        allRestaurants.add(name);
     }
 
     public void refreshAdapter() {
