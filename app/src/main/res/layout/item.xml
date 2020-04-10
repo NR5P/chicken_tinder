@@ -5,23 +5,20 @@ android:layout_gravity="center"
 android:layout_width="500dp"
 android:layout_height="650dp">
 
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/restaurantImage"
+        android:id="@+id/restaurantimage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ImageView>
+
     <TextView
         android:id="@+id/restaurantName"
-        android:textSize="40sp"
-        android:textColor="@android:color/white"
-        android:background="#E339"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:background="#e339"
         android:gravity="center"
-        tools:text="restaurant"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        tools:text="restaurant" />
 
     <View
         android:id="@+id/item_swipe_left_indicator"
@@ -29,7 +26,7 @@ android:layout_height="650dp">
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:layout_margin="10dp"
-        android:background="#A5F" />
+        android:background="#a5f" />
 
     <View
         android:id="@+id/item_swipe_right_indicator"
@@ -39,6 +36,5 @@ android:layout_height="650dp">
         android:layout_margin="10dp"
         android:layout_gravity="right"
         android:background="#5AF" />
-</LinearLayout>
 
 </FrameLayout>

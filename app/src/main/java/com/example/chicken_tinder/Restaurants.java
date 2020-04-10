@@ -1,5 +1,7 @@
 package com.example.chicken_tinder;
 
+import android.widget.ArrayAdapter;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,14 @@ class Result {
 
     public Opening_hours opening_hours;
     public ArrayList<photos> photos;
+
+    public String getName() {
+        return name;
+    }
+
+    public photos getPhotos() {
+        return photos.get(0);
+    }
 }
 
 class Opening_hours {
