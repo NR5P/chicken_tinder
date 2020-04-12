@@ -6,9 +6,10 @@ android:layout_width="500dp"
 android:layout_height="650dp">
 
     <ImageView
-        android:id="@+id/restaurantimage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ImageView>
+        android:id="@+id/restaurantImage"
+        android:background="@android:color/darker_gray"
+        android:layout_width="400dp"
+        android:layout_height="400dp"></ImageView>
 
     <TextView
         android:id="@+id/restaurantName"
@@ -16,6 +17,7 @@ android:layout_height="650dp">
         android:layout_height="200dp"
         android:background="#e339"
         android:gravity="center"
+        android:layout_gravity="center"
         android:textColor="@android:color/white"
         android:textSize="40sp"
         tools:text="restaurant" />
