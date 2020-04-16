@@ -6,18 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/restaurantImage"
-        android:scaleType="fitCenter"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        app:srcCompat="@drawable/ic_launcher_background"></ImageView>
-
     <TextView
         android:id="@+id/restaurantName"
         android:layout_width="400dp"
         android:layout_height="200dp"
-        android:background="@drawable/ic_launcher_background"
         android:gravity="center"
         android:layout_gravity="center"
         android:textColor="@android:color/white"
