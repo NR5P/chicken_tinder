@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_gravity="center"
-android:layout_width="500dp"
-android:layout_height="650dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/restaurantImage"
-        android:background="@android:color/darker_gray"
+        android:scaleType="fitCenter"
         android:layout_width="400dp"
-        android:layout_height="400dp"></ImageView>
+        android:layout_height="400dp"
+        app:srcCompat="@drawable/ic_launcher_background"></ImageView>
 
     <TextView
         android:id="@+id/restaurantName"
         android:layout_width="400dp"
         android:layout_height="200dp"
-        android:background="#e339"
+        android:background="@drawable/ic_launcher_background"
         android:gravity="center"
         android:layout_gravity="center"
         android:textColor="@android:color/white"
         android:textSize="40sp"
         tools:text="restaurant" />
-
+</FrameLayout>
+    <!--
     <View
         android:id="@+id/item_swipe_left_indicator"
         android:alpha="0"
@@ -38,5 +41,4 @@ android:layout_height="650dp">
         android:layout_margin="10dp"
         android:layout_gravity="right"
         android:background="#5AF" />
-
-</FrameLayout>
+-->

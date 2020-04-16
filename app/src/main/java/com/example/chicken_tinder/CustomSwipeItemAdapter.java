@@ -40,7 +40,7 @@ public class CustomSwipeItemAdapter extends ArrayAdapter<Result> {
         restaurantNameView.setText(name);
 
         String photoUrlPath = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photo.photo_reference + "&key=" + key;
-        Picasso.get().load(photoUrlPath).into(imageView);
+        //Picasso.get().load(photoUrlPath).into(imageView); //TODO: need to get pic figured out before setting
         Log.d("photo reference: ",photoUrlPath);
 
         return restaurantNameView;

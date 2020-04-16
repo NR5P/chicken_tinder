@@ -118,8 +118,6 @@ public class FindRestaurants implements ActivityCompat.OnRequestPermissionsResul
         ArrayList<Result> restaurantResults = getRestaurantResults();
         for (Result r : restaurants.results) {
             swipeActivity.addRestaurant(r);
-            Log.d("FindRestaurants","photo is: "+r.photos.get(0).photo_reference);
-            Log.d("FindRestaurants","height is: "+r.photos.get(0).height);
             handler.post(new Runnable() {
                 @Override
                 public void run() {
